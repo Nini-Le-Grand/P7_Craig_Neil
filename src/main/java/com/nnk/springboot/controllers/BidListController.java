@@ -1,54 +1,61 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.dto.BidListAddDTO;
+import com.nnk.springboot.dto.BidListDTO;
+import com.nnk.springboot.services.BidListService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BidListController {
-    // TODO: Inject Bid service
+    @Autowired
+    private BidListService bidListService;
 
     @RequestMapping("/bidList/list")
-    public String home(Model model) {
-        // TODO: call service find all bids to show to the view
-        return "bidList/list";
+    public ModelAndView home() {
+        ModelAndView mav = new ModelAndView("bidList/list");
+        mav.addObject("bidLists", bidListService.getBidLists());
+        return mav;
     }
 
     @GetMapping("/bidList/add")
-    public String addBidForm(Model model) {
-        model.addAttribute("bidList", new BidListAddDTO());
-        return "bidList/add";
+    public ModelAndView addBidForm() {
+        ModelAndView mav = new ModelAndView("bidList/add");
+        mav.addObject("bidList", new BidListDTO());
+        return mav;
     }
 
     @PostMapping("/bidList/validate")
-    public String validate(@Valid BidList bid, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return bid list
-        return "bidList/add";
+    public String validate(@Valid @ModelAttribute("bidList") BidListDTO bidListDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "bidList/add";
+        }
+        bidListService.addBidList(bidListDTO);
+        return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/update/{id}")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
-        // TODO: get Bid by Id and to model then show to the form
-        return "bidList/update";
+    public ModelAndView showUpdateForm(@PathVariable("id") Integer id) {
+        ModelAndView mav = new ModelAndView("bidList/update");
+        mav.addObject("bidList", bidListService.findBidListToUpdate(id));
+        return mav;
     }
 
     @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") int id, @Valid BidList bidList, BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
+    public String updateBid(@PathVariable("id") Integer id, @Valid @ModelAttribute("bidList") BidListDTO bidListDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "bidList/update";
+        }
+        bidListService.updateBidList(id, bidListDTO);
         return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/delete/{id}")
-    public String deleteBid(@PathVariable("id") int id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
+    public String deleteBid(@PathVariable("id") Integer id) {
+        bidListService.deleteBidList(id);
         return "redirect:/bidList/list";
     }
 }

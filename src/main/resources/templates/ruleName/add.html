@@ -8,11 +8,10 @@
 </head>
 <body>
 <div class="container">
-
+	<div th:insert="~{fragments/header :: header}"></div>
 	<div class="row">
 		<h2>Add New Rule</h2>
 	</div>
-
 	<div class="row">
 		<form action="#" th:action="@{/ruleName/validate}" th:object="${ruleName}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">
@@ -58,16 +57,14 @@
 				</div>
 			</div>
 
-
 			<div class="form-group">
 				<div class="col-sm-12">
-					<a class="btn btn-danger btn-sm" href="/rule/list">Cancel</a>
+					<a class="btn btn-danger btn-sm" href="/ruleName/list">Cancel</a>
 					<input class="btn btn-primary btn-sm" type="submit" value="Add Rule">
 				</div>
 			</div>
 		</form>
 	</div>
-
 </div>
 </body>
 </html>

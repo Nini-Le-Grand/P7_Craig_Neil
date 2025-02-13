@@ -1,4 +1,3 @@
-/*
 package com.nnk.springboot.config;
 
 import org.springframework.context.annotation.Bean;
@@ -8,7 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -16,18 +14,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                           .requestMatchers("/css/**", "/js/**").permitAll()
-                           .anyRequest().authenticated())
-                   .formLogin(form -> form
-                           .defaultSuccessUrl("/home", true)
-                           .permitAll()
-                   )
-                   .logout(logout -> logout
-                           .logoutUrl("/logout")
-                           .logoutSuccessUrl("/login?logout")
-                           .permitAll()
-                   )
+        return http.authorizeHttpRequests(auth -> auth.requestMatchers("/register", "/css/**")
+                                                      .permitAll()
+                                                      .requestMatchers("/admin/**")
+                                                      .hasRole("ADMIN")
+                                                      .anyRequest()
+                                                      .authenticated())
+                   .formLogin(form -> form.loginPage("/login")
+                                          .defaultSuccessUrl("/bidList/list", true)
+                                          .failureUrl("/login?error=true")
+                                          .permitAll())
+                   .logout(logout -> logout.logoutUrl("/app-logout")
+                                           .logoutSuccessUrl("/login?logout")
+                                           .permitAll())
                    .sessionManagement(sessionManagement -> sessionManagement
                            .maximumSessions(1)
                            .expiredUrl("/login?sessionExpired=true"))
@@ -38,6 +37,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
-*/
+
+

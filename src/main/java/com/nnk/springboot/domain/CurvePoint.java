@@ -12,10 +12,17 @@ import java.sql.Timestamp;
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int curveId;
+    private Integer id;
+    private Integer curveId;
     private Timestamp asOfDate;
     private Double term;
     private Double value;
+
+    @Column(updatable = false)
     private Timestamp creationDate;
+
+    @PrePersist
+    protected void onCreate() {
+        creationDate = new Timestamp(System.currentTimeMillis());
+    }
 }

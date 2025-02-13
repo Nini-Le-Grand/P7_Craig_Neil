@@ -9,9 +9,9 @@ import lombok.Data;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String moodysRating;
     private String sandPRating;
     private String fitchRating;
-    private int orderNumber;
+    private Integer orderNumber;
 }
