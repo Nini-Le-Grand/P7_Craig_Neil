@@ -29,7 +29,7 @@ public class CurvePointService {
                                    .toList();
     }
 
-    private CurvePoint getCurvePoint(Integer id) {
+    public CurvePoint getCurvePoint(Integer id) {
         return curvePointRepository.findById(id)
                                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
                                            "Le curvePoint avec l'id %d n'existe pas", id)));

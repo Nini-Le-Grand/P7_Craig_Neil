@@ -20,7 +20,7 @@ public class BidListService {
                                 .stream()
                                 .map(bidList -> {
                                     BidListDTO bidListDTO = new BidListDTO();
-                                    bidListDTO.setId(bidList.getBidListId());
+                                    bidListDTO.setId(bidList.getId());
                                     bidListDTO.setAccount(bidList.getAccount());
                                     bidListDTO.setType(bidList.getType());
                                     bidListDTO.setBidQuantity(bidList.getBidQuantity());
@@ -29,7 +29,7 @@ public class BidListService {
                                 .toList();
     }
 
-    private BidList getBidList(Integer id) {
+    public BidList getBidList(Integer id) {
         return bidListRepository.findById(id)
                                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
                                         "La bidList avec l'id %d n'existe pas", id)));
@@ -38,7 +38,7 @@ public class BidListService {
     public BidListDTO findBidListToUpdate(Integer id) {
         BidList bidList = getBidList(id);
         BidListDTO bidListDTO = new BidListDTO();
-        bidListDTO.setId(bidList.getBidListId());
+        bidListDTO.setId(bidList.getId());
         bidListDTO.setAccount(bidList.getAccount());
         bidListDTO.setType(bidList.getType());
         bidListDTO.setBidQuantity(bidList.getBidQuantity());

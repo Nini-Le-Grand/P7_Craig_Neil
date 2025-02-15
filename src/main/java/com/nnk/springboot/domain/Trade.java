@@ -4,17 +4,20 @@ package com.nnk.springboot.domain;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 
 @Entity
 @Table(name = "trade")
-@Data
+@Getter
+@Setter
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tradeId;
+    private Integer id;
     private String account;
     private String type;
     private Double buyQuantity;

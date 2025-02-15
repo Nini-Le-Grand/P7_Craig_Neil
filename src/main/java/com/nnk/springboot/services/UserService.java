@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
                              .toList();
     }
 
-    private User getUser(Integer id) {
+    public User getUser(Integer id) {
         return userRepository.findById(id)
                              .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
                                      "Le user avec l'id %d n'existe pas", id)));
@@ -105,7 +105,7 @@ public class UserService implements UserDetailsService {
             if (validators.isPasswordInvalid(userDTO.getPassword())) {
                 result.rejectValue("password", "error.password", "MDP : 8 char minimum : 1 MAJ, 1 min, 1 chiffre, 1 symbole");
             }
-            user.setPassword(userDTO.getPassword());
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         } else {
             user.setPassword(user.getPassword());
         }

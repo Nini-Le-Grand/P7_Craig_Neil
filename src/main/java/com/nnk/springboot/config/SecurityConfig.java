@@ -27,9 +27,8 @@ public class SecurityConfig {
                    .logout(logout -> logout.logoutUrl("/app-logout")
                                            .logoutSuccessUrl("/login?logout")
                                            .permitAll())
-                   .sessionManagement(sessionManagement -> sessionManagement
-                           .maximumSessions(1)
-                           .expiredUrl("/login?sessionExpired=true"))
+                   .sessionManagement(sessionManagement -> sessionManagement.maximumSessions(1)
+                                                                            .expiredUrl("/login?sessionExpired=true"))
                    .build();
     }
 

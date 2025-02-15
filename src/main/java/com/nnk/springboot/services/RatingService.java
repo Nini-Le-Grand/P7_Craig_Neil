@@ -30,7 +30,7 @@ public class RatingService {
                                .toList();
     }
 
-    private Rating getRating(Integer id) {
+    public Rating getRating(Integer id) {
         return ratingRepository.findById(id)
                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
                                        "Le rating avec l'id %d n'existe pas", id)));

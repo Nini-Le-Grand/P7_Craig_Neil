@@ -32,7 +32,7 @@ public class RuleNameService {
                                  .toList();
     }
 
-    private RuleName getRuleName(Integer id) {
+    public RuleName getRuleName(Integer id) {
         return ruleNameRepository.findById(id)
                                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
                                          "Le ruleName avec l'id %d n'existe pas", id)));

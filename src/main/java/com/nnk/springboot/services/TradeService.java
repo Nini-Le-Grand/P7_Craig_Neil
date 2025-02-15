@@ -20,7 +20,7 @@ public class TradeService {
                               .stream()
                               .map(trade -> {
                                   TradeDTO tradeDTO = new TradeDTO();
-                                  tradeDTO.setId(trade.getTradeId());
+                                  tradeDTO.setId(trade.getId());
                                   tradeDTO.setAccount(trade.getAccount());
                                   tradeDTO.setType(trade.getType());
                                   tradeDTO.setBuyQuantity(trade.getBuyQuantity());
@@ -29,7 +29,7 @@ public class TradeService {
                               .toList();
     }
 
-    private Trade getTrade(Integer id) {
+    public Trade getTrade(Integer id) {
         return tradeRepository.findById(id)
                               .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
                                       "Le trade avec l'id %d n'existe pas", id)));
@@ -38,7 +38,7 @@ public class TradeService {
     public TradeDTO findTradeToUpdate(Integer id) {
         Trade trade = getTrade(id);
         TradeDTO tradeDTO = new TradeDTO();
-        tradeDTO.setId(trade.getTradeId());
+        tradeDTO.setId(trade.getId());
         tradeDTO.setAccount(trade.getAccount());
         tradeDTO.setType(trade.getType());
         tradeDTO.setBuyQuantity(trade.getBuyQuantity());
