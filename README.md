@@ -10,5 +10,5 @@
 ## Installation
 - Télécharger le projet de Github
 - Lier les variables d'environnement DB_USERNAME et DB_PASSWORD pour permettre la connection à mySQL
-- Lancer le script SQL (doc/data.sql) pour créer le schema et les tables
+- Lancer le script SQL (doc/poseiden.sql) pour créer le schema et les tables
 - Sinon créer la base de donnée "poseiden" comme configuré dans le fichier application.properties. L'application crééra automatiquement les tables au lancement
