@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+/**
+ * Represents a rule name entry in the application.
+ */
 @Entity
 @Table(name = "rulename")
 @Getter

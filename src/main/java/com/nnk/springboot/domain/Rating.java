@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents a rating entry in the application.
+ */
 @Entity
 @Table(name = "rating")
 @Getter

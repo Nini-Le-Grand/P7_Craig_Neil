@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
-
+/**
+ * Represents a curve point entry in the application.
+ */
 @Entity
 @Table(name = "curvepoint")
 @Getter

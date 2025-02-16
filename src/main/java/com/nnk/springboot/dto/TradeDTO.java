@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for trade entries.
+ */
 @Getter
 @Setter
 public class TradeDTO {

@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for rule name entries.
+ */
 @Getter
 @Setter
 public class RuleNameDTO {

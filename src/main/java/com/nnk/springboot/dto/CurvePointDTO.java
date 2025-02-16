@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for curve point entries.
+ */
 @Getter
 @Setter
 public class CurvePointDTO {

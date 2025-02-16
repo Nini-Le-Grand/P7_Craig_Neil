@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for user login credentials.
+ */
 @Getter
 @Setter
 public class LoginDTO {

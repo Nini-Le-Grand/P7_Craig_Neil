@@ -9,7 +9,9 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
-
+/**
+ * Represents a trade entry in the application.
+ */
 @Entity
 @Table(name = "trade")
 @Getter

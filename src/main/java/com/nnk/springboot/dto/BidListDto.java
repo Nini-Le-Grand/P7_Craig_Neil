@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for bid list entries.
+ */
 @Getter
 @Setter
 public class BidListDTO {

@@ -12,6 +12,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Represents a user in the application.
+ *
+ * <p>
+ * The {@code User} class is an entity that maps to the {@code users} table in the database.
+ * It implements the {@link UserDetails} interface, which is part of Spring Security.
+ * This class provides the necessary user information for authentication and authorization purposes.
+ * </p>
+ */
 @Entity
 @Table(name = "users")
 @Getter

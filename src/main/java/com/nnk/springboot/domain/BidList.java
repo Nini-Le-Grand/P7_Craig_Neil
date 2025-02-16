@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+/**
+ * Represents a bid list entry in the application.
+ */
 @Entity
 @Table(name = "bidlist")
 @Getter
